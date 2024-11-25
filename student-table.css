@@ -1,0 +1,49 @@
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  th, td {
+    text-align: center;
+    width: 190px;
+  }
+  input {
+    width: 180px; 
+  }
+  #myTable{
+      margin-top: 30px;
+  }
+  input[type="button"] {
+    width: 100px; 
+  }
+  /* Mobile devices (max-width: 480px) */
+@media only screen and (max-width: 480px) {
+  table {
+    width: 100%;
+  }
+  th, td {
+    width: auto;
+    text-align: left;
+    padding: 10px;
+  }
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  input[type="button"] {
+    width: 100%;
+  }
+  #myTable {
+    margin-top: 10px;
+  }
+}
+
+/* Small mobile devices (max-width: 320px) */
+@media only screen and (max-width: 320px) {
+  th, td {
+    font-size: 14px;
+  }
+  input {
+    font-size: 14px;
+  }
+}

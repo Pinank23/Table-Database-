@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>student table</title>
+  <link rel="stylesheet" href="student-table.css">
+</head>
+<body>
+<h2>STUDENT TABLE</h2>
+<form>
+    <input type="text" id="col1" name="col1" maxlength="20" placeholder="Name">
+    <input type="number" id="col2" name="col2" maxlength="5"  placeholder="Age ">
+    <input type="number" id="col3" name="col3"  maxlength="4" placeholder="Roll No. ">
+    <input type="text" id="col4" name="col4" maxlength="5" placeholder="Gender ">
+    <input type="text" id="col5" name="col5" maxlength="50" placeholder="Course ">
+    <input type="number" id="col6" name="col6" maxlength="20"  placeholder="Fees ">
+    <input type="button" value="Add" onclick="addRow()">
+</form>
+<table id="myTable" >
+  <tr>
+    <th>NAME <button onclick="deleterow()">D</button></th>
+    <th>AGE <button onclick="deleterow()">D</button></th>
+    <th>ROLL NO. <button onclick="deleterow()">D</button></th>
+    <th>GENDER <button onclick="deleterow()">D</button></th>
+    <th>COURSE <button onclick="deleterow()">D</button></th>
+    <th>FEES <button onclick="deleterow()">D</button></th>
+  </tr>
+</table>
+<script>
+    function addRow() {
+        var table = document.getElementById("myTable");
+        var row = table.insertRow(-1); 
+        var cells = [];
+        var i = 0;
+        while (i < 6) {
+            cells.push(row.insertCell());
+            i++;
+        }
+
+        var name = document.getElementById("col1").value;
+        var age = document.getElementById("col2").value;
+        var rollNo = document.getElementById("col3").value;
+        var gender = document.getElementById("col4").value;
+        var course = document.getElementById("col5").value;
+        var fees = document.getElementById("col6").value;
+
+        if (name === "" || age === "" || rollNo === "" || gender === "" || course === "" || fees === "") {
+            alert("Please enter all fields!");
+        } else {
+            cells[0].innerHTML = name;
+            cells[1].innerHTML = age;
+            cells[2].innerHTML = rollNo;
+            cells[3].innerHTML = gender;
+            cells[4].innerHTML = course;
+            cells[5].innerHTML = fees;
+
+            // Clear input fields
+            document.getElementById("col1").value = "";
+            document.getElementById("col2").value = "";
+            document.getElementById("col3").value = "";
+            document.getElementById("col4").value = "";
+            document.getElementById("col5").value = "";
+            document.getElementById("col6").value = "";
+    }
+  }
+ function deleterow() {
+    var table = document.getElementById("myTable");
+    var rows = table.rows;
+    var rowCount = rows.length;
+
+    for (var i = rowCount - 1; i > 0; i--) {
+        var row = rows[i];
+        var cells = row.cells;
+
+        var name = cells[0].innerHTML;
+        var age = cells[1].innerHTML;
+        var rollNo = cells[2].innerHTML;
+        var gender = cells[3].innerHTML;
+        var course = cells[4].innerHTML;
+        var fees = cells[5].innerHTML;
+
+        for (var j = rowCount - 1; j > 0; j--) {
+            if (j !== i) {
+                var otherRow = rows[j];
+                var otherCells = otherRow.cells;
+                if (otherCells[0].innerHTML === name ||
+                    otherCells[1].innerHTML === age ||
+                    otherCells[2].innerHTML === rollNo ||
+                    otherCells[3].innerHTML === gender ||
+                    otherCells[4].innerHTML === course ||
+                    otherCells[5].innerHTML === fees) {
+                    table.deleteRow(i);
+                    return;
+                }
+            }
+        }
+    }
+}
+
+</script>
+</body>
+</html>
